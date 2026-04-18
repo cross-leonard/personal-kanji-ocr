@@ -1,17 +1,20 @@
-import cv2
 import pyperclip
-from PIL import Image
 from manga_ocr import MangaOcr
-from mss import mss, tools
 import sct
-import tkinter
+from clearboxfeature import select_box
 
 
 
 
 mocr = MangaOcr()
-sct.sct()
-text = mocr("screenshot.png")
+box = select_box()
+
+if box is None:
+	print("No selection made.")
+	raise SystemExit(0)
+
+screenshot_path = sct.sct(box)
+text = mocr(screenshot_path)
 
 
 

@@ -1,24 +1,22 @@
 from mss import mss, tools
 
 
-def sct():
-    """ Take sc based on parameters given """
+def sct(box: tuple[int, int, int, int], output: str = "screenshot.png") -> str:
+    """Capture a screenshot of the selected box and save it to disk."""
+    x1, y1, x2, y2 = box
+    width = x2 - x1
+    height = y2 - y1
+
+    if width <= 0 or height <= 0:
+        raise ValueError("Selection box must have positive width and height")
+
     with mss() as sct:
 
-        # The screen part to capture
-        monitor = {"top": 300, "left": 0, "width": 920, "height": 600}
-        output = "screenshot.png".format(**monitor)
+        monitor = {"top": y1, "left": x1, "width": width, "height": height}
 
         # Grab the data
         sct_img = sct.grab(monitor)
 
         # Save to the picture file
         tools.to_png(sct_img.rgb, sct_img.size, output=output)
-        print(output)
-
-sct()
-
-
-#this take a sc of a specific section of screen so far
-# TODO 
-# use tkinter to create a transparent box and grab coords to use for sc of said box
+        return output
