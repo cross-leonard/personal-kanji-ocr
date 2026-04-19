@@ -1,8 +1,9 @@
 import keyboard
 
-def shortcut():
-    print('start overlay')
 
-def start_hotkey():
-    keyboard.add_hotkey('alt + /', shortcut)
-    keyboard.wait('esc')
+def run_ocr():
+    print('running ocr \n')
+
+while True:
+    event = keyboard.read_event()
+    keyboard.add_hotkey('alt+/', run_ocr)

@@ -7,6 +7,8 @@ from sct import screenshot
 from box_selector import BoxSelector
 import tkinter as tk
 from PIL import Image
+import keyboard
+
 
 def select_box() -> tuple[int, int, int, int] | None:
         root = tk.Tk()
@@ -27,11 +29,12 @@ def select_box() -> tuple[int, int, int, int] | None:
 
         return (x1, y1, x2, y2)
 
+
+mocr = MangaOcr()
+
 def main():
 
     box = select_box()
-
-    mocr = MangaOcr()
     screenshot_path = screenshot(box)
     img = Image.open(screenshot_path)
     text = mocr(img)
@@ -39,6 +42,10 @@ def main():
     pyperclip.copy(text)
     print(text)
 
-if __name__ == "__main__":
-    main()
+
+keyboard.add_hotkey('alt+/', main)
+
+while True:
+    pass
+
 
