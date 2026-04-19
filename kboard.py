@@ -1,6 +1,9 @@
 import keyboard 
 
 
-keyboard.add_hotkey('alt + /', print, args =('you entered', 'hotkey')) 
+
+def shortcut():
+    print('start overlay')
+keyboard.add_hotkey('alt + /', shortcut)
 
 keyboard.wait('esc')
