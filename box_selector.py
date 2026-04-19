@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 class BoxSelector:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
@@ -16,7 +15,7 @@ class BoxSelector:
         self.canvas.pack(fill="both", expand=True)
 
         self.canvas.bind("<ButtonPress-1>", self.on_press)
-        self.canvas.bind("<B1-Mouse>", self.on_drag)
+        self.canvas.bind("<B1-Motion>", self.on_drag)
         self.canvas.bind("<ButtonRelease-1>", self.on_release)
 
         root.bind("<Escape>", self.quit)
@@ -29,6 +28,8 @@ class BoxSelector:
         self.end_x = event.x
         self.end_y = event.y
 
+        print("start x,y: ", self.start_x, self.start_y)
+        print("end x,y: ", self.end_x, self.end_y)
         if self.rect_id is not None:
             self.canvas.delete(self.rect_id)
 
@@ -45,19 +46,18 @@ class BoxSelector:
         self.end_x = event.x
         self.end_y = event.y
 
+        print('dragging')
         if self.rect_id is not None:
             self.canvas.coords(self.rect_id, self.start_x, self.start_y, self.end_x, self.end_y)
 
     def on_release(self, event: tk.Event) -> None:
         self.end_x = event.x
         self.end_y = event.y
+        print("released!!!", self.end_x, self.end_y)
 
     def get_box(self) -> tuple[int, int, int, int]:
-        x1 = min(self.start_x, self.end_x)
-        y1 = min(self.start_y, self.end_y)
-        x2 = max(self.start_x, self.end_x)
-        y2 = max(self.start_y, self.end_y)
-        return (x1, y1, x2, y2)
+        return (self.start_x, self.start_y, self.end_x, self.end_y)
+        
         
     def confirm(self, _event: tk.Event | None = None) -> None:
         self.confirmed = True
@@ -67,23 +67,3 @@ class BoxSelector:
         self.cancelled = True
         self.root.destroy()
 
-
-# add to main later
-def select_box() -> tuple[int, int, int, int] | None:
-    root = tk.Tk()
-    root.title("Draw Selection Box")
-    root.attributes("-fullscreen", True)
-    root.attributes("-alpha", 0.25)
-    root.configure(bg="black")
-
-    selector = BoxSelector(root)
-    root.mainloop()
-
-    if selector.cancelled:
-        return None
-
-    x1, y1, x2, y2 = selector.get_box()
-    if x1 == x2 or y1 == y2:
-        return None
-
-    return (x1, y1, x2, y2)

@@ -1,15 +1,44 @@
+import ctypes
+ctypes.windll.shcore.SetProcessDpiAwareness(2)
+
 import pyperclip
 from manga_ocr import MangaOcr
-import sct
-import box_selector
+from sct import screenshot
+from box_selector import BoxSelector
+import tkinter as tk
+from PIL import Image
 
-mocr = MangaOcr()
-box = select_box()
+def select_box() -> tuple[int, int, int, int] | None:
+        root = tk.Tk()
+        root.title("Draw Selection Box")
+        root.attributes("-fullscreen", True)
+        root.attributes("-alpha", 0.25)
+        root.configure(bg="black")
 
-screenshot_path = sct.sct(box)
-text = mocr(screenshot_path)
+        selector = BoxSelector(root)
+        root.mainloop()
 
-pyperclip.copy(text)
-print(text)
+        if selector.cancelled:
+            return None
 
+        x1, y1, x2, y2 = selector.get_box()
+        if x1 == x2 or y1 == y2:
+            return None
+
+        return (x1, y1, x2, y2)
+
+def main():
+
+    box = select_box()
+
+    mocr = MangaOcr()
+    screenshot_path = screenshot(box)
+    img = Image.open(screenshot_path)
+    text = mocr(img)
+
+    pyperclip.copy(text)
+    print(text)
+
+if __name__ == "__main__":
+    main()
 
