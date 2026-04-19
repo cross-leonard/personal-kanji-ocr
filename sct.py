@@ -19,5 +19,5 @@ def screenshot(box: tuple[int, int, int, int], output: str = "screenshot.png") -
         sct_img = sct.grab(monitor)
 
         tools.to_png(sct_img.rgb, sct_img.size, output=output)
-        print(sct_img.size)
+        
         return output

@@ -44,8 +44,7 @@ def main():
 
 
 keyboard.add_hotkey('alt+/', main)
+keyboard.wait()
 
-while True:
-    pass
 
 
