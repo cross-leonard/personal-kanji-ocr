@@ -15,11 +15,9 @@ def screenshot(box: tuple[int, int, int, int], output: str = "screenshot.png") -
     with mss() as sct:
 
         monitor = {"top": top, "left": left, "width": width, "height": height}
-
-        # Grab the data
+        
         sct_img = sct.grab(monitor)
 
-        # Save to the picture file
         tools.to_png(sct_img.rgb, sct_img.size, output=output)
-        print(sct_img.size)
+        
         return output

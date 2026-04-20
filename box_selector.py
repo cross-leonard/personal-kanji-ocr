@@ -28,8 +28,8 @@ class BoxSelector:
         self.end_x = event.x
         self.end_y = event.y
 
-        print("start x,y: ", self.start_x, self.start_y)
-        print("end x,y: ", self.end_x, self.end_y)
+        #print("start x,y: ", self.start_x, self.start_y)
+        #print("end x,y: ", self.end_x, self.end_y)
         if self.rect_id is not None:
             self.canvas.delete(self.rect_id)
 
@@ -46,18 +46,17 @@ class BoxSelector:
         self.end_x = event.x
         self.end_y = event.y
 
-        print('dragging')
+        # print('dragging')
         if self.rect_id is not None:
             self.canvas.coords(self.rect_id, self.start_x, self.start_y, self.end_x, self.end_y)
 
     def on_release(self, event: tk.Event) -> None:
         self.end_x = event.x
         self.end_y = event.y
-        print("released!!!", self.end_x, self.end_y)
+        # print("released!!!", self.end_x, self.end_y)
 
     def get_box(self) -> tuple[int, int, int, int]:
         return (self.start_x, self.start_y, self.end_x, self.end_y)
-        
         
     def confirm(self, _event: tk.Event | None = None) -> None:
         self.confirmed = True

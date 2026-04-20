@@ -1,6 +1,9 @@
-import keyboard 
+import keyboard
 
 
-keyboard.add_hotkey('alt + /', print, args =('you entered', 'hotkey')) 
+def run_ocr():
+    print('running ocr \n')
 
-keyboard.wait('esc')
+while True:
+    event = keyboard.read_event()
+    keyboard.add_hotkey('alt+/', run_ocr)
