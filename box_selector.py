@@ -65,4 +65,3 @@ class BoxSelector:
     def quit(self, _event: tk.Event | None = None) -> None:
         self.cancelled = True
         self.root.destroy()
-
