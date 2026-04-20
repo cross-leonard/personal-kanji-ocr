@@ -8,7 +8,7 @@ from box_selector import BoxSelector
 import tkinter as tk
 from PIL import Image
 import keyboard
-
+from plyer import notification
 
 def select_box() -> tuple[int, int, int, int] | None:
         root = tk.Tk()
@@ -28,7 +28,6 @@ def select_box() -> tuple[int, int, int, int] | None:
             return None
 
         return (x1, y1, x2, y2)
-
 
 mocr = MangaOcr()
 

@@ -28,6 +28,8 @@ python main.py
 - Tkinter (GUI overlay)
 - mss (screen capture)
 - pyperclip (clipboard access)
+- keyboard (key event handling)
+- ctypes (Windows API for DPI awareness)
 
 ## Author
 Cross Leonard
