@@ -1,6 +1,7 @@
 import ctypes
 ctypes.windll.shcore.SetProcessDpiAwareness(2)
 
+import os
 import pyperclip
 from manga_ocr import MangaOcr
 from sct import screenshot
@@ -8,7 +9,7 @@ from box_selector import BoxSelector
 import tkinter as tk
 from PIL import Image
 import keyboard
-from plyer import notification
+from notification import send_notification
 
 def select_box() -> tuple[int, int, int, int] | None:
         root = tk.Tk()
@@ -39,10 +40,12 @@ def main():
     text = mocr(img)
 
     pyperclip.copy(text)
+    send_notification("Kanji Detected", "Kanji copied to clipboard")
     print(text)
 
 
 keyboard.add_hotkey('alt+/', main)
+keyboard.add_hotkey('alt+q', lambda: os._exit(0))
 keyboard.wait()
 
 
