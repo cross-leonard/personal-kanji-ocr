@@ -1,3 +1,4 @@
+<img width="1349" height="779" alt="kanji_ocr_gif" src="https://github.com/user-attachments/assets/9fbdf156-b476-4e56-913c-03cbca056fe2" />
 # Manga OCR Screen Reader
 
 ## Description
@@ -7,6 +8,7 @@ to your clipboard. Useful for reading manga or any Japanese text
 on screen without switching apps.
 
 ## Demo
+<img width="1349" height="779" alt="kanji_ocr_gif" src="https://github.com/user-attachments/assets/9fbdf156-b476-4e56-913c-03cbca056fe2" />
 
 
 ## How It Works
