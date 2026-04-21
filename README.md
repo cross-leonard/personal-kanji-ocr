@@ -7,7 +7,7 @@ to your clipboard. Useful for reading manga or any Japanese text
 on screen without switching apps.
 
 ## Demo
-(add GIF in furture)
+![demo](path/to/your/file.gif)
 
 ## How It Works
 1. A fullscreen transparent overlay appears
