@@ -13,8 +13,8 @@ from manga_ocr import MangaOcr
 from notification import send_notification
 from sct import screenshot
 
-
 def select_box() -> tuple[int, int, int, int] | None:
+    """Open the selection overlay and return the chosen screen box."""
     root = tk.Tk()
     root.title("Draw Selection Box")
     root.attributes("-fullscreen", True)
@@ -33,11 +33,10 @@ def select_box() -> tuple[int, int, int, int] | None:
 
     return (x1, y1, x2, y2)
 
-
 mocr = MangaOcr()
 
-
 def main():
+    """Run OCR on the selected area and copy the detected text."""
     box = select_box()
     if box is None:
         return
@@ -48,9 +47,7 @@ def main():
 
     pyperclip.copy(text)
 
-    send_notification()
-    print(text)
-
+    send_notification(True, text)
 
 keyboard.add_hotkey("alt+/", main)
 keyboard.add_hotkey("alt+q", lambda: os._exit(0))
