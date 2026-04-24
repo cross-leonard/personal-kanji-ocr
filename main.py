@@ -47,7 +47,8 @@ def main():
     text = mocr(img)
 
     pyperclip.copy(text)
-    send_notification("Kanji Detected", "Kanji copied to clipboard")
+
+    send_notification()
     print(text)
 
 
