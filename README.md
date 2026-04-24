@@ -1,36 +1,47 @@
 # Manga OCR Screen Reader
 
 ## Description
-A desktop tool that lets you select any region of your screen, 
-extracts Japanese text from it using OCR, and copies the result 
-to your clipboard. Useful for reading manga or any Japanese text 
-on screen without switching apps.
+A small Windows tool that lets you draw a box around Japanese text on your screen, runs OCR on that area, copies the result to your clipboard, and shows a notification.
 
 ## Demo
 <img width="1349" height="779" alt="kanji_ocr_gif" src="https://github.com/user-attachments/assets/9fbdf156-b476-4e56-913c-03cbca056fe2" />
 
-
 ## How It Works
-1. A fullscreen transparent overlay appears
-2. Click and drag to draw a box around the Japanese text
-3. Press Enter to confirm the selection
-4. The text is extracted and copied to your clipboard automatically
-5. Press Escape to cancel at any time
+1. Press `Alt + /` to start.
+2. A transparent fullscreen overlay appears.
+3. Click and drag to draw a box around the text.
+4. Press `Enter` to confirm, or `Escape` to cancel.
+5. The selected area is captured, OCR runs, and the text is copied to your clipboard.
+
+## Hotkeys
+- `Alt + /` start OCR from a screen selection
+- `Alt + Q` quit the app
 
 ## Installation
-pip install manga-ocr pyperclip mss
+Install the Python packages used by the project:
+
+```bash
+pip install manga-ocr pyperclip mss pillow keyboard plyer
+```
 
 ## How to Run
+```bash
 python main.py
+```
+
+## Notes
+- This project is intended for Windows.
+- `keyboard` and `ctypes` are used for global hotkeys and DPI awareness.
 
 ## Technologies Used
 - Python
-- manga-ocr (Japanese OCR model)
-- Tkinter (GUI overlay)
-- mss (screen capture)
-- pyperclip (clipboard access)
-- keyboard (key event handling)
-- ctypes (Windows API for DPI awareness)
+- manga-ocr
+- Tkinter
+- mss
+- pyperclip
+- keyboard
+- plyer
+- ctypes
 
 ## Author
 Cross Leonard
